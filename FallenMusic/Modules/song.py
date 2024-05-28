@@ -36,7 +36,7 @@ def is_valid_youtube_url(url):
     # Check if the provided URL is a valid YouTube URL
     return url.startswith(("https://www.youtube.com", "http://www.youtube.com", "youtube.com"))
 
-@app.on_message(command(["يوت", "yt", "تنزيل", "بحث"]))
+@app.on_message(command(["song", "vsong", "video", "music"]) | filters.command(["تحميل","فيديو","صوت"],prefixes= ["/", "!","","#"]))
 async def song(_, message: Message):
     try:
         await message.delete()
