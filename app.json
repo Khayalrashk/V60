@@ -1,6 +1,6 @@
 {
-    "name": "سۅٛࢪس ڪࢪستيڼ 𝄞",
-    "description": "سورس تشغيل القران الكريم في الاتصال 🌺",
+    "name": "سورس لاريـن 𝄞",
+    "description": "سورس تشغيل الاغاني والفديوهات في المكالمات 🌺",
     "logo": "https://graph.org/file/4921b5d12ac8f7013ac73.jpg",
     "keywords": [
     "python3",
@@ -39,6 +39,16 @@
       "SUDO_USERS": {
         "description": "ضـع ايـدي الـحـسـاب الـمـسـاعـد",
         "value": "",
+        "required": true
+      },
+        "CHANNEL_NAME": {
+        "description": "اسم قناتك.",
+        "value": "• 𝐒𝐨𝐮𝐫𝐜𝐞 𝐋𝐚𝐫𝐢𝐧 🎧",
+        "required": true
+      },
+      "CHANNEL_LINK": {
+        "description": "رابط قناتك.",
+        "value": "https://t.me/sourcelarin",
         "required": true
       },
       "SUPPORT_CHAT": {
