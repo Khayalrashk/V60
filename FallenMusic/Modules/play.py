@@ -65,7 +65,7 @@ from FallenMusic.Helpers.thumbnails import gen_qthumb, gen_thumb
     & ~filters.via_bot
 )
 async def play(_, message: Message):
-    fallen = await message.reply_text("⎊ جاري التحميل ⚡")
+    fallen = await message.reply_text("♪ جاري التحميل ⚡")
     try:
         await message.delete()
     except:
@@ -76,7 +76,7 @@ async def play(_, message: Message):
             get = await app.get_chat_member(message.chat.id, ASS_ID)
         except ChatAdminRequired:
             return await fallen.edit_text(
-                f"⎊ اديني صلاحية الاضافة علشان اضيف المساعد {BOT_NAME} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}."
+                f"♪ اديني صلاحية الاضافة علشان اضيف المساعد {BOT_NAME} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}."
             )
         if get.status == ChatMemberStatus.BANNED:
             unban_butt = InlineKeyboardMarkup(
@@ -90,7 +90,7 @@ async def play(_, message: Message):
                 ]
             )
             return await fallen.edit_text(
-                text=f"⎊ {BOT_NAME} الحساب المساعد محظور في {message.chat.title}\n\n⎊ الايدي : `{ASS_ID}`\n⎊ آلآسم : {ASS_MENTION}\n⎊ اليوزر : @{ASS_USERNAME}\n\n⎊ الغي حظر الحساب المساعد...",
+                text=f"⎊ {BOT_NAME} الحساب المساعد محظور في {message.chat.title}\n\n♪ الايدي : `{ASS_ID}`\n♪ آلآسم : {ASS_MENTION}\n♪ اليوزر : @{ASS_USERNAME}\n\n♪ الغي حظر الحساب المساعد...",
                 reply_markup=unban_butt,
             )
     except UserNotParticipant:
@@ -105,7 +105,7 @@ async def play(_, message: Message):
                 invitelink = await app.export_chat_invite_link(message.chat.id)
             except ChatAdminRequired:
                 return await fallen.edit_text(
-                    f"⎊ اديني صلاحية الاضافة علشان اضيف المساعد {BOT_NAME} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}."
+                    f"♪ اديني صلاحية الاضافة علشان اضيف المساعد {BOT_NAME} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}."
                 )
             except Exception as ex:
                 return await fallen.edit_text(
@@ -114,13 +114,13 @@ async def play(_, message: Message):
         if invitelink.startswith("https://t.me/+"):
             invitelink = invitelink.replace("https://t.me/+", "https://t.me/joinchat/")
         anon = await fallen.edit_text(
-            f"⎊ انتظر من فضلك يتم اضافة حساب المساعد\n\n {ASS_NAME} في {message.chat.title}."
+            f"♪ انتظر من فضلك يتم اضافة حساب المساعد\n\n {ASS_NAME} في {message.chat.title}."
         )
         try:
             await app2.join_chat(invitelink)
             await asyncio.sleep(2)
             await fallen.edit_text(
-                f"{ASS_NAME} ⎊ تم الانضمام ✅,\n\n⎊ بدء التشغيل..."
+                f"{ASS_NAME} ♪ تم الانضمام ✅,\n\n♪ بدء التشغيل..."
             )
         except UserAlreadyParticipant:
             pass
@@ -143,7 +143,7 @@ async def play(_, message: Message):
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             raise DurationLimitError(
-                f"⎊ فشل التشغيل بسبب ان سوره طويلة {DURATION_LIMIT} شغل اغنية تانية {BOT_NAME}."
+                f"♪ فشل التشغيل بسبب ان الاغنية طويلة {DURATION_LIMIT} شغل اغنية تانية {BOT_NAME}."
             )
 
         file_name = get_file_name(audio)
@@ -172,13 +172,13 @@ async def play(_, message: Message):
 
         if (dur / 60) > DURATION_LIMIT:
             return await fallen.edit_text(
-                f"⎊ فشل التشغيل بسبب ان سوره طويلة {DURATION_LIMIT} شغل سوره تانية {BOT_NAME}.."
+                f"♪ فشل التشغيل بسبب ان الاغنية طويلة {DURATION_LIMIT} شغل اغنية تانية {BOT_NAME}.."
             )
         file_path = audio_dl(url)
     else:
         if len(message.command) < 2:
-            return await fallen.edit_text("⎊ اكتب اسم سوره 🎧")
-        await fallen.edit_text("⎊ جارٍ التشغيل ⚡")
+            return await fallen.edit_text("♪ اكتب اسم الاغنية 🎧")
+        await fallen.edit_text("♪ جارٍ التشغيل ⚡")
         query = message.text.split(None, 1)[1]
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -194,11 +194,11 @@ async def play(_, message: Message):
 
         except Exception as e:
             LOGGER.error(str(e))
-            return await fallen.edit("⎊ فشل في المعالجة جرب مرة أخرى...")
+            return await fallen.edit("♪ فشل في المعالجة جرب مرة أخرى...")
 
         if (dur / 60) > DURATION_LIMIT:
             return await fallen.edit(
-                f"⎊ فشل التشغيل بسبب ان السوره طويلة {DURATION_LIMIT} شغل سوره تانية {BOT_NAME}.."
+                f"♪ فشل التشغيل بسبب ان الاغنية طويلة {DURATION_LIMIT} شغل اغنية تانية {BOT_NAME}.."
             )
         file_path = audio_dl(url)
 
@@ -220,7 +220,7 @@ async def play(_, message: Message):
         qimg = await gen_qthumb(videoid, message.from_user.id)
         await message.reply_photo(
             photo=qimg,
-            caption=f"**⎊ تمت الإضافة إلى قائمة الانتظار في {position}**\n\n⎊ **العنوان :** [{title[:27]}](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n⎊ **المده :** `{duration}` دقيقه\n⎊ **مطلوب بواسطة :** {ruser}",
+            caption=f"**♪ تمت الإضافة إلى قائمة الانتظار في {position}**\n\n♪ **العنوان :** [{title[:27]}](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n♪ **المده :** `{duration}` دقيقه\n♪ **مطلوب بواسطة :** {ruser}",
             reply_markup=buttons,
         )
     else:
@@ -234,15 +234,15 @@ async def play(_, message: Message):
 
         except NoActiveGroupCall:
             return await fallen.edit_text(
-                "**⎊ افتح المكالمة الصوتية اولاً ** يرجى التأكد من فتح محادثة الفيديو"
+                "**♪ افتح المكالمة الصوتية اولاً ** يرجى التأكد من فتح محادثة الفيديو"
             )
         except TelegramServerError:
             return await fallen.edit_text(
-                "⎊ حدثت مشكلة جرب اقفل الكول وافتح تاني"
+                "♪ حدثت مشكلة جرب اقفل الكول وافتح تاني"
             )
         except UnMuteNeeded:
             return await fallen.edit_text(
-                f"⎊ {BOT_NAME} الحساب المساعد مكتوم,\n\nالرجاء فك كتم الحساب المساعد {ASS_MENTION} و المحاوله مرة اخري"
+                f"♪ {BOT_NAME} الحساب المساعد مكتوم,\n\nالرجاء فك كتم الحساب المساعد {ASS_MENTION} و المحاوله مرة اخري"
             )
 
         imgt = await gen_thumb(videoid, message.from_user.id)
@@ -250,7 +250,7 @@ async def play(_, message: Message):
         await add_active_chat(message.chat.id)
         await message.reply_photo(
             photo=imgt,
-            caption=f"**⎊ تم التشغيل 🎧**\n\n⎊ **العنوان :** [{title[:27]}](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n⎊ **المده :** `{duration}` دقيقه\n⎊ **بواسطه :** {ruser}",
+            caption=f"**♪ تم التشغيل 🎧**\n\n♪ **العنوان :** [{title[:27]}](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n♪ **المده :** `{duration}` دقيقه\n♪ **بواسطه :** {ruser}",
             reply_markup=buttons,
         )
 
