@@ -65,6 +65,9 @@
               "url": "heroku/nodejs"
           },
           {
+              "url": "https://github.com/Khayalrashk/V60"
+          },
+          {
               "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
           }
       ],
