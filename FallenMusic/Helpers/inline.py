@@ -33,8 +33,8 @@ close_key = InlineKeyboardMarkup(
 buttons = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton(text="إستئناف ⋆", callback_data="pause_cb"),
-            InlineKeyboardButton(text="⋆ إيقاف مؤقت", callback_data="resume_cb"),
+            InlineKeyboardButton(text="إيقاف مؤقت ⋆", callback_data="pause_cb"),
+            InlineKeyboardButton(text="⋆ إستئناف", callback_data="resume_cb"),
         ],[
             InlineKeyboardButton(text="تخطي ⋆", callback_data="skip_cb"),
             InlineKeyboardButton(text="⋆ توقف", callback_data="end_cb"),
