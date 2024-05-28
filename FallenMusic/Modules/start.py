@@ -34,7 +34,7 @@ from FallenMusic.Helpers.dossier import *
 @app.on_message(filters.command(["start"]) | filters.command(["الاوامر","اوامر"],prefixes= ["/", "!","","#"]) & ~filters.forwarded)
 @app.on_edited_message(filters.command(["start"]) & ~filters.forwarded)
 async def fallen_st(_, message: Message):
-    if message.chat.type == ChatType.PRIVATE:
+    if message.chat.type == ChatType:
         if len(message.text.split()) > 1:
             cmd = message.text.split(None, 1)[1]
             if cmd[0:3] == "inf":
