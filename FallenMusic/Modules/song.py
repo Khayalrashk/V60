@@ -38,7 +38,7 @@ async def song(_, message: Message):
         await message.delete()
     except:
         pass
-    m = await message.reply_text("⎊ جارٍ التحميل...")
+    m = await message.reply_text("♪ جارٍ التحميل...")
 
     query = "".join(" " + str(i) for i in message.command[1:])
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
@@ -58,13 +58,13 @@ async def song(_, message: Message):
             f"فشل إحضار المسار من ʏᴛ-ᴅʟ.\n\n**السبب :** `{ex}`"
         )
 
-    await m.edit_text("⎊ جارٍ التحميل انتظر,\n\n⎊ بواسطه ‌SPIDER..")
+    await m.edit_text("♪ جارٍ التحميل انتظر,\n\n♪ بواسطه ‌SPIDER..")
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = f"⎊ **العنوان :** [{title[:23]}]({link})\n⎊ **المده :** `{duration}`\n⎊ ** بواسطة :** {BOT_MENTION}"
+        rep = f"♪ **العنوان :** [{title[:23]}]({link})\n♪ **المده :** `{duration}`\n♪ ** بواسطة :** {BOT_MENTION}"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -91,7 +91,7 @@ async def song(_, message: Message):
             )
             if message.chat.type != ChatType.PRIVATE:
                 await message.reply_text(
-                    "يرجى التحقق من أن المسؤول قد أرسل السوره المطلوبة."
+                    "يرجى التحقق من أن المسؤول قد أرسل الاغنية المطلوبة."
                 )
         except:
             start_butt = InlineKeyboardMarkup(
@@ -105,7 +105,7 @@ async def song(_, message: Message):
                 ]
             )
             return await m.edit_text(
-                text="اضغط فوق الزر أدناه وابدأ في تنزيل سور قرانيه",
+                text="اضغط فوق الزر أدناه وابدأ في تنزيل الاغنية",
                 reply_markup=start_butt,
             )
         await m.delete()
