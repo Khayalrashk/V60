@@ -24,7 +24,7 @@ import os
 import re
 import requests
 import yt_dlp
-from FallenMusic.filters import command
+from strings.filters import command
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
