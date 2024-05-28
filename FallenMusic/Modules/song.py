@@ -21,8 +21,11 @@
 # SOFTWARE.
 
 import os
-
 import requests
+
+import aiohttp
+import aiofiles
+
 import yt_dlp
 from pyrogram import filters
 from pyrogram.enums import ChatType
@@ -87,8 +90,8 @@ async def song(_, message: Message):
             ]
 
         ),
-            )
-    await m.delete()
+        )
+        await m.delete()
 
     except Exception as ex:
         await m.edit(" error, wait for bot owner to fix")
@@ -98,4 +101,3 @@ async def song(_, message: Message):
         remove_if_exists(audio_file)
         remove_if_exists(thumb_name)
     except Exception as ex:
-        print(ex)
