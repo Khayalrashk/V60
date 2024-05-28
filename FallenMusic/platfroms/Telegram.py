@@ -6,8 +6,8 @@ from typing import Union
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Voice
 
 import config
-from ZeMusic import app
-from ZeMusic.utils.formatters import (
+from FallenMusic import app
+from FallenMusic.utils.formatters import (
     check_duration,
     convert_bytes,
     get_readable_time,
