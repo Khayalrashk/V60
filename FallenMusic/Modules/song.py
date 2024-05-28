@@ -88,7 +88,7 @@ async def song(_, message: Message):
 
         ),
             )
-await m.delete()
+    await m.delete()
     except:
         return await m.edit_text("فشل تحميل الصوت على الخادم")
 
