@@ -101,3 +101,4 @@ async def song(_, message: Message):
         remove_if_exists(audio_file)
         remove_if_exists(thumb_name)
     except Exception as ex:
+        print(ex)
