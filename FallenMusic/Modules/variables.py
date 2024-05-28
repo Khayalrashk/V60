@@ -54,8 +54,8 @@ async def get_vars(_, message: Message):
             disable_web_page_preview=True,
         )
     except:
-        return await message.reply_text("⎊ فشل في إرسال متغيرات التكوين .")
+        return await message.reply_text("♪ فشل في إرسال متغيرات التكوين .")
     if message.chat.type != ChatType.PRIVATE:
         await message.reply_text(
-            "⎊ ᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴘᴍ, ɪ'ᴠᴇ sᴇɴᴛ ᴛʜᴇ ᴄᴏɴғɪɢ ᴠᴀʀɪᴀʙʟᴇs ᴛʜᴇʀᴇ."
+            "♪ ᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴘᴍ, ɪ'ᴠᴇ sᴇɴᴛ ᴛʜᴇ ᴄᴏɴғɪɢ ᴠᴀʀɪᴀʙʟᴇs ᴛʜᴇʀᴇ."
         )
