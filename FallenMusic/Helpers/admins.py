@@ -41,7 +41,7 @@ def admin_check(func: Callable) -> Callable:
         check = await app.get_chat_member(message.chat.id, message.from_user.id)
         if check.status not in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR]:
             return await message.reply_text(
-                "⎊ ʏᴏᴜ'ʀᴇ ɴᴏᴛ ᴀɴ ᴀᴅᴍɪɴ ʙᴀʙʏ, ᴘʟᴇᴀsᴇ sᴛᴀʏ ɪɴ ʏᴏᴜʀ ʟɪᴍɪᴛs."
+                "♪ ʏᴏᴜ'ʀᴇ ɴᴏᴛ ᴀɴ ᴀᴅᴍɪɴ ʙᴀʙʏ, ᴘʟᴇᴀsᴇ sᴛᴀʏ ɪɴ ʏᴏᴜʀ ʟɪᴍɪᴛs."
             )
 
         admin = (
@@ -51,7 +51,7 @@ def admin_check(func: Callable) -> Callable:
             return await func(_, message)
         else:
             return await message.reply_text(
-                "⎊ ليس لديك أذونات لإدارة محادثات الفيديو "
+                "♪ ليس لديك أذونات لإدارة محادثات الفيديو "
             )
 
     return non_admin
@@ -73,7 +73,7 @@ def admin_check_cb(func: Callable) -> Callable:
             return
         if check.status not in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR]:
             return await query.answer(
-                "⎊ انت لست مشرف 🥺",
+                "♪ انت لست مشرف 🥺",
                 show_alert=True,
             )
 
@@ -84,7 +84,7 @@ def admin_check_cb(func: Callable) -> Callable:
             return await func(_, query)
         else:
             return await query.answer(
-                "⎊ ليس لديك أذونات لإدارة محادثات الفيديو",
+                "♪ ليس لديك أذونات لإدارة محادثات الفيديو",
                 show_alert=True,
             )
 
