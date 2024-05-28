@@ -33,12 +33,11 @@ close_key = InlineKeyboardMarkup(
 buttons = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton(text="إستئناف ⋆", callback_data=f"ADMIN Resume|{chat_id}"),
-            InlineKeyboardButton(text="إيقاف مؤقت", callback_data=f"ADMIN Pause|{chat_id}"),
-            InlineKeyboardButton(text="⋆ إعاده", callback_data=f"ADMIN Replay|{chat_id}"),
+            InlineKeyboardButton(text="إستئناف ⋆", callback_data="pause_cb"),
+            InlineKeyboardButton(text="⋆ إيقاف مؤقت", callback_data="resume_cb"),
         ],[
-            InlineKeyboardButton(text="⋆ تخطي ⋆", callback_data=f"ADMIN Skip|{chat_id}"),
-            InlineKeyboardButton(text="⋆ توقف ⋆", callback_data=f"ADMIN Stop|{chat_id}"),
+            InlineKeyboardButton(text="تخطي ⋆", callback_data="skip_cb"),
+            InlineKeyboardButton(text="⋆ توقف", callback_data="end_cb"),
         ],[
             InlineKeyboardButton(text=config.CHANNEL_NAME, url=config.CHANNEL_LINK)],
         ]
