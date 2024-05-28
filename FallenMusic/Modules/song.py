@@ -89,11 +89,13 @@ async def song(_, message: Message):
         ),
             )
     await m.delete()
-    except:
-        return await m.edit_text("فشل تحميل الصوت على الخادم")
+
+    except Exception as ex:
+        await m.edit(" error, wait for bot owner to fix")
+        print(ex)
 
     try:
-        os.remove(audio_file)
-        os.remove(thumb_name)
+        remove_if_exists(audio_file)
+        remove_if_exists(thumb_name)
     except Exception as ex:
-        LOGGER.error(ex)
+        print(ex)
