@@ -27,7 +27,7 @@ import aiohttp
 import aiofiles
 
 import yt_dlp
-from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
@@ -36,15 +36,17 @@ from FallenMusic import BOT_MENTION, BOT_USERNAME, LOGGER, app
 
 
 @app.on_message(filters.command(["song", "vsong", "video", "music"]) | filters.command(["تحميل","بحث","صوت"],prefixes= ["/", "!","","#"]))
-async def song(_, message: Message):
-    try:
-        await message.delete()
-    except:
-        pass
-    m = await message.reply_text("♪ جارٍ التحميل...")
-
-    query = "".join(" " + str(i) for i in message.command[1:])
-    ydl_opts = {"format": "bestaudio[ext=m4a]"}
+async def song(client, message: Message):
+    query = " ".join(message.command[1:])
+    m = await message.reply_text("<b>⇜ جـارِ البحث عـن المقطـع الصـوتـي . . .</b>")
+    ydl_ops = {
+         format :  bestaudio[ext=m4a] ,
+         keepvideo : True,
+         prefer_ffmpeg : False,
+         geo_bypass : True,
+         outtmpl :  %(title)s.%(ext)s ,
+         quite : True,
+    }
     try:
         results = YoutubeSearch(query, max_results=5).to_dict()
         link = f"https://youtube.com{results[0]['url_suffix']}"
@@ -98,7 +100,7 @@ async def song(_, message: Message):
         print(ex)
 
     try:
-        remove_if_exists(audio_file)
-        remove_if_exists(thumb_name)
+        os.remove(audio_file)
+        os.remove(thumb_name)
     except Exception as ex:
         print(ex)
