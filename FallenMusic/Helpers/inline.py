@@ -72,7 +72,7 @@ gp_buttons = [
         )
     ],
     [
-        InlineKeyboardButton(text="CHANNEL_NAME", url=config.CHANNEL_LINK),
+        InlineKeyboardButton(text=config.CHANNEL_NAME, url=config.CHANNEL_LINK),
         InlineKeyboardButton(text="جروب الدعم", url=config.SUPPORT_CHAT),
     ],
     [
@@ -103,7 +103,7 @@ helpmenu = [
 
 
 help_back = [
-    [InlineKeyboardButton(text="• جروب الدعم •", url=config.SUPPORT_CHAT)],
+    [InlineKeyboardButton(text=config.CHANNEL_NAME, url=config.CHANNEL_LINK)],
     [
         InlineKeyboardButton(text="• رجوع •", callback_data="fallen_help"),
         InlineKeyboardButton(text="• مسح •", callback_data="close"),
