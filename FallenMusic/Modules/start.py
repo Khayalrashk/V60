@@ -52,17 +52,17 @@ async def fallen_st(_, message: Message):
                     link = result["link"]
                     published = result["publishedTime"]
                 searched_text = f"""
-⎊ **تتبع المعلومات ** 
+♪ **تتبع المعلومات ** 
 
-⎊ **العنوان :** {title}
+♪ **العنوان :** {title}
 
-⎊ **المدة :** {duration} دقيقة
-⎊ **الآراء :** `{views}`
-⎊ **نشرت في :** {published}
-⎊ **الرابط :** [ᴡᴀᴛᴄʜ ᴏɴ ʏᴏᴜᴛᴜʙᴇ]({link})
-⎊ **القناة :** [{channel}]({channellink})
+♪ **المدة :** {duration} دقيقة
+♪ **الآراء :** `{views}`
+♪ **نشرت في :** {published}
+♪ **الرابط :** [ᴡᴀᴛᴄʜ ᴏɴ ʏᴏᴜᴛᴜʙᴇ]({link})
+♪ **القناة :** [{channel}]({channellink})
 
-⎊ بحث بواسطة {BOT_NAME}"""
+♪ بحث بواسطة {BOT_NAME}"""
                 key = InlineKeyboardMarkup(
                     [
                         [
