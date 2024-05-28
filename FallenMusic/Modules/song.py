@@ -58,7 +58,7 @@ async def song(_, message: Message):
             f"فشل إحضار المسار من ʏᴛ-ᴅʟ.\n\n**السبب :** `{ex}`"
         )
 
-    await m.edit_text("♪ جارٍ التحميل انتظر,\n\n♪ بواسطه ‌SPIDER..")
+    await m.edit_text("♪ جارٍ التحميل انتظر,\n\n♪ ..")
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
@@ -80,35 +80,25 @@ async def song(_, message: Message):
                     ]
                 ]
             )
-            await app.send_audio(
-                chat_id=message.from_user.id,
+            await message.reply_audio(
                 audio=audio_file,
                 caption=rep,
                 thumb=thumb_name,
                 title=title,
+                performer=host,
                 duration=dur,
-                reply_markup=visit_butt,
-            )
-            if message.chat.type != ChatType.PRIVATE:
-                await message.reply_text(
-                    "يرجى التحقق من أن المسؤول قد أرسل الاغنية المطلوبة."
-                )
-        except:
-            start_butt = InlineKeyboardMarkup(
+                reply_markup=InlineKeyboardMarkup(
+            [
                 [
-                    [
-                        InlineKeyboardButton(
-                            text="اضغط هنا",
-                            url=f"https://t.me/{BOT_USERNAME}?start",
-                        )
-                    ]
-                ]
+                    InlineKeyboardButton(
+                        text=config.CHANNEL_NAME, url=config.CHANNEL_LINK),
+                ],
+
+            ]
+
+        ),
             )
-            return await m.edit_text(
-                text="اضغط فوق الزر أدناه وابدأ في تنزيل الاغنية",
-                reply_markup=start_butt,
-            )
-        await m.delete()
+await m.delete()
     except:
         return await m.edit_text("فشل تحميل الصوت على الخادم")
 
