@@ -46,21 +46,21 @@ def testspeed(m):
 
 @app.on_message(filters.command(["speedtest", "spt"]) | filters.command(["فحص","السرعة","السرعه","سرعه","سرعة"],prefixes= ["/", "!","","#"]) & SUDOERS)
 async def speedtest_function(_, message):
-    m = await message.reply_text("**⎊ تشغيل اختبار السرعة...**")
+    m = await message.reply_text("**♪ تشغيل اختبار السرعة...**")
     loop = asyncio.get_event_loop()
     result = await loop.run_in_executor(None, testspeed, m)
-    output = f"""✯ **نتائج اختبار سرعه سبايدر ** ✯
+    output = f"""✯ **نتائج اختبار سرعه لاريـن ** ✯
     
-<u>**⎊ عميل :**</u>
-**⎊ مزود خدمة الإنترنت :** {result['client']['isp']}
-**⎊ الدولة :** {result['client']['country']}
+<u>**♪ عميل :**</u>
+**♪ مزود خدمة الإنترنت :** {result['client']['isp']}
+**♪ الدولة :** {result['client']['country']}
   
-<u>**⎊ سيرفر :**</u>
-**⎊ الاسم :** {result['server']['name']}
-**⎊ الدولة :** {result['server']['country']}, {result['server']['cc']}
-**⎊ راعي :** {result['server']['sponsor']}
-**⎊ وقت الإستجابة :** {result['server']['latency']}  
-**⎊ البنج :** {result['ping']}"""
+<u>**♪ سيرفر :**</u>
+**♪ الاسم :** {result['server']['name']}
+**♪ الدولة :** {result['server']['country']}, {result['server']['cc']}
+**♪ راعي :** {result['server']['sponsor']}
+**♪ وقت الإستجابة :** {result['server']['latency']}  
+**♪ البنج :** {result['ping']}"""
     msg = await app.send_photo(
         chat_id=message.chat.id, photo=result["share"], caption=output
     )
