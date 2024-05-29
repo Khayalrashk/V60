@@ -21,13 +21,10 @@
 # SOFTWARE.
 
 import os
+
 import requests
-
-import aiohttp
-import aiofiles
-
 import yt_dlp
-from pyrogram import Client, filters
+from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
@@ -36,17 +33,15 @@ from FallenMusic import BOT_MENTION, BOT_USERNAME, LOGGER, app
 
 
 @app.on_message(filters.command(["song", "vsong", "video", "music"]) | filters.command(["تحميل","بحث","صوت"],prefixes= ["/", "!","","#"]))
-async def song(client, message: Message):
-    query = " ".join(message.command[1:])
-    m = await message.reply_text("<b>⇜ جـارِ البحث عـن المقطـع الصـوتـي . . .</b>")
-    ydl_ops = {
-        "format": "best",
-        "keepvideo": True,
-        "prefer_ffmpeg": False,
-        "geo_bypass": True,
-        "outtmpl": "%(title)s.%(ext)s",
-        "quite": True,
-    }
+async def song(_, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+    m = await message.reply_text("♪ جارٍ التحميل...")
+
+    query = "".join(" " + str(i) for i in message.command[1:])
+    ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=5).to_dict()
         link = f"https://youtube.com{results[0]['url_suffix']}"
@@ -63,7 +58,7 @@ async def song(client, message: Message):
             f"فشل إحضار المسار من ʏᴛ-ᴅʟ.\n\n**السبب :** `{ex}`"
         )
 
-    await m.edit_text("♪ جارٍ التحميل انتظر,\n\n♪ ..")
+    await m.edit_text("♪ جارٍ التحميل انتظر,..")
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
@@ -74,33 +69,30 @@ async def song(client, message: Message):
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
             secmul *= 60
-        
-            await message.reply_audio(
-                audio=audio_file,
-                caption=rep,
-                thumb=thumb_name,
-                title=title,
-                performer=host,
-                duration=dur,
-                reply_markup=InlineKeyboardMarkup(
-            [
+        try:
+            visit_butt = InlineKeyboardMarkup(
                 [
-                    InlineKeyboardButton(
-                        text=config.CHANNEL_NAME, url=config.CHANNEL_LINK),
-                ],
-
-            ]
-
-        ),
-        )
+                    [
+                        InlineKeyboardButton(
+                            text=config.CHANNEL_NAME, url=config.CHANNEL_LINK
+                        )
+                    ]
+                ]
+            )
+        await message.reply_audio(
+            audio=audio_file,
+            caption=rep,
+            thumb=thumb_name,
+            title=title,
+            duration=dur,
+            reply_markup=visit_butt,
+            )
         await m.delete()
-
-    except Exception as ex:
-        await m.edit(" error, wait for bot owner to fix")
-        print(ex)
+    except:
+        return await m.edit_text("فشل تحميل الصوت على الخادم")
 
     try:
         os.remove(audio_file)
         os.remove(thumb_name)
     except Exception as ex:
-        print(ex)
+        LOGGER.error(ex)
